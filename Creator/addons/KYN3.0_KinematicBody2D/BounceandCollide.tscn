@@ -1,0 +1,65 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/soldier1_gun.png" type="Texture" id=3]
+[ext_resource path="res://Wall.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 22.0227
+
+[node name="BounceandCollide" type="Node" index="0"]
+
+[node name="Player" type="KinematicBody2D" parent="." index="0"]
+
+position = Vector2( 350, 139 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+Bullet = ExtResource( 2 )
+speed = 200
+
+[node name="Sprite" type="Sprite" parent="Player" index="0"]
+
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" index="1"]
+
+position = Vector2( -5, 0 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Muzzle" type="Position2D" parent="Player" index="2"]
+
+position = Vector2( 28, 8 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="Walls" type="Node" parent="." index="1"]
+
+[node name="Wall" parent="Walls" index="0" instance=ExtResource( 4 )]
+
+[node name="Wall2" parent="Walls" index="1" instance=ExtResource( 4 )]
+
+position = Vector2( 668, 85 )
+
+[node name="Wall3" parent="Walls" index="2" instance=ExtResource( 4 )]
+
+position = Vector2( 827.828, 263.748 )
+rotation = 1.5708
+_sections_unfolded = [ "Transform" ]
+
+[node name="Wall4" parent="Walls" index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 231.425, 302.296 )
+rotation = 1.5708
+_sections_unfolded = [ "Transform" ]
+
+

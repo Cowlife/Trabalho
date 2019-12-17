@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Kirby  The Amazing Mirror (GBA) Music - Area 07 Peppermint Place.ogg-fc15c6449d7a4be4dad3140cd5139761.oggstr"
+
+[deps]
+
+source_file="res://Kirby  The Amazing Mirror (GBA) Music - Area 07 Peppermint Place.ogg"
+dest_files=[ "res://.import/Kirby  The Amazing Mirror (GBA) Music - Area 07 Peppermint Place.ogg-fc15c6449d7a4be4dad3140cd5139761.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

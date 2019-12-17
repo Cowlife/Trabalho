@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Oliver e Benji 1ª Abertura - Portugal.wav-e043e2c5dfbe15c2e09628be387967ce.sample"
+
+[deps]
+
+source_file="res://Oliver e Benji 1ª Abertura - Portugal.wav"
+dest_files=[ "res://.import/Oliver e Benji 1ª Abertura - Portugal.wav-e043e2c5dfbe15c2e09628be387967ce.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

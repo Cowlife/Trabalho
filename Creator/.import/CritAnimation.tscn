@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Power Up Sprite.png" type="Texture" id=1]
+[ext_resource path="res://photoshop.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Node2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self._on_AnimationPlayer_ready()
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_AnimationPlayer_ready():
+	$\"Power Up Sprite/AnimationPlayer\".play()
+	pass # Replace with function body.
+"
+
+[sub_resource type="Animation" id=1]
+resource_name = "PowerUp"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 0.2, 0.4, 0.7, 1, 1.2, 1.5, 1.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 6 ]
+}
+
+[node name="Node2D" type="Node2D"]
+position = Vector2( 0, 3.79478 )
+script = SubResource( 2 )
+
+[node name="Power Up Sprite" type="Sprite" parent="."]
+position = Vector2( 1161.83, 802.272 )
+scale = Vector2( 72.1978, 20.6007 )
+texture = ExtResource( 1 )
+vframes = 3
+hframes = 3
+frame = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Power Up Sprite"]
+anims/PowerUp = SubResource( 1 )
+
+[node name="photoshop" type="Sprite" parent="."]
+position = Vector2( 1095.51, 792.566 )
+scale = Vector2( 2.1976, 2.50315 )
+texture = ExtResource( 2 )
+[connection signal="ready" from="Power Up Sprite/AnimationPlayer" to="." method="_on_AnimationPlayer_ready"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Menu - Super Smash Bros.ogg-c334908414ce4809d9a97b5a57b0ce19.oggstr"
+
+[deps]
+
+source_file="res://Menu - Super Smash Bros.ogg"
+dest_files=[ "res://.import/Menu - Super Smash Bros.ogg-c334908414ce4809d9a97b5a57b0ce19.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

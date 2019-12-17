@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Character.gd" type="Script" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://DebugDraw.tscn" type="PackedScene" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32.0033, 32.2455 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 150, 21 )
+
+[node name="Part1" type="Node" index="0"]
+
+[node name="Character" type="KinematicBody2D" parent="." index="0"]
+
+position = Vector2( 151, 104 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Character" index="0"]
+
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character" index="1"]
+
+shape = SubResource( 1 )
+
+[node name="DebugDraw" parent="Character" index="2" instance=ExtResource( 3 )]
+
+[node name="Obstacle" type="StaticBody2D" parent="." index="1"]
+
+position = Vector2( 423, 430 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Polygon2D" type="Polygon2D" parent="Obstacle" index="0"]
+
+polygon = PoolVector2Array( 150, -20, 150, 20, -150, 20, -150, -20 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle" index="1"]
+
+shape = SubResource( 2 )
+
+

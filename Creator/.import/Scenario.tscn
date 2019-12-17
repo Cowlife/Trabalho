@@ -1,0 +1,102 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://.import/Scenario.gd" type="Script" id=1]
+[ext_resource path="res://.import/BLACKR~1.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://pitch.png" type="Texture" id=3]
+[ext_resource path="res://azul-inverno-congelado-fundo-campo-gelo-patinagem-gelo-textured-banco-de-fotos_csp24128432.jpg" type="Texture" id=4]
+[ext_resource path="res://Menu - Super Smash Bros.ogg" type="AudioStream" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 160
+font_data = ExtResource( 2 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 922.0
+margin_top = 93.0
+margin_right = 1310.0
+margin_bottom = 276.0
+
+[node name="Panel" type="Panel" parent="TextureRect"]
+margin_left = -919.0
+margin_top = -96.0
+margin_right = 1484.0
+margin_bottom = 1721.0
+
+[node name="Button" type="Button" parent="TextureRect/Panel"]
+margin_left = 1275.86
+margin_top = 1236.48
+margin_right = 2044.86
+margin_bottom = 1366.48
+
+[node name="Label" type="Label" parent="TextureRect/Panel/Button"]
+margin_left = 5.03491
+margin_top = 0.00012207
+margin_right = 775.035
+margin_bottom = 130.0
+custom_fonts/font = SubResource( 1 )
+text = "Ice Field"
+align = 1
+
+[node name="pitch" type="Sprite" parent="TextureRect/Panel/Button/Label"]
+position = Vector2( -614.873, -398.248 )
+scale = Vector2( 0.702274, 0.732512 )
+texture = ExtResource( 3 )
+
+[node name="azul-inverno-congelado-fundo-campo-gelo-patinagem-gelo-textured-banco-de-fotos_csp24128432" type="Sprite" parent="TextureRect/Panel/Button/Label/pitch"]
+position = Vector2( 1416.01, -4.89856 )
+scale = Vector2( 4.34585, 4.51409 )
+texture = ExtResource( 4 )
+
+[node name="Button2" type="Button" parent="TextureRect/Panel"]
+margin_left = 291.503
+margin_top = 1241.52
+margin_right = 1060.5
+margin_bottom = 1371.52
+
+[node name="Label" type="Label" parent="TextureRect/Panel/Button2"]
+margin_left = -0.000183105
+margin_top = -7.55261
+margin_right = 770.0
+margin_bottom = 122.447
+custom_fonts/font = SubResource( 1 )
+text = "Football Field"
+align = 1
+
+[node name="Button3" type="Button" parent="TextureRect/Panel"]
+margin_left = 955.0
+margin_top = 1471.0
+margin_right = 1317.0
+margin_bottom = 1657.0
+
+[node name="Label" type="Label" parent="TextureRect/Panel/Button3"]
+margin_left = 34.3158
+margin_top = 20.1052
+margin_right = 320.316
+margin_bottom = 150.105
+custom_fonts/font = SubResource( 1 )
+text = "Back"
+align = 1
+
+[node name="Label" type="Label" parent="TextureRect"]
+margin_left = -490.764
+margin_top = -36.2441
+margin_right = 881.236
+margin_bottom = 171.756
+custom_fonts/font = SubResource( 2 )
+text = "Choose your Scenario"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -17.165
+autoplay = true
+[connection signal="pressed" from="TextureRect/Panel/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="TextureRect/Panel/Button2" to="." method="_on_Button2_pressed"]
+[connection signal="pressed" from="TextureRect/Panel/Button3" to="." method="_on_Button3_pressed"]
+[connection signal="ready" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_ready"]

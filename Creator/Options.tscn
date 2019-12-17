@@ -1,0 +1,131 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://.import/BLACKR~1.TTF" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 100
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.301961, 0.686275, 0.631373, 1 )
+
+[node name="Options" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 728.208
+margin_top = 67.5355
+margin_right = 1499.21
+margin_bottom = 283.535
+
+[node name="Panel" type="Panel" parent="TextureRect"]
+margin_left = -552.382
+margin_top = -29.3632
+margin_right = 1499.62
+margin_bottom = 1584.64
+
+[node name="Button5" type="Button" parent="TextureRect/Panel"]
+margin_left = 755.446
+margin_top = 1389.14
+margin_right = 1337.45
+margin_bottom = 1544.14
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_fonts/font = SubResource( 1 )
+action_mode = 0
+
+[node name="Label" type="Label" parent="TextureRect/Panel/Button5"]
+margin_left = 157.909
+margin_top = 10.5457
+margin_right = 405.909
+margin_bottom = 140.546
+hint_tooltip = "fffffff"
+custom_fonts/font = SubResource( 2 )
+text = "Back"
+align = 1
+valign = 1
+
+[node name="Button6" type="Button" parent="TextureRect/Panel"]
+margin_left = 171.272
+margin_top = 359.877
+margin_right = 753.272
+margin_bottom = 514.877
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_fonts/font = SubResource( 1 )
+action_mode = 0
+
+[node name="Label" type="Label" parent="TextureRect/Panel/Button6"]
+margin_left = 157.909
+margin_top = 10.5457
+margin_right = 405.909
+margin_bottom = 140.546
+hint_tooltip = "fffffff"
+custom_fonts/font = SubResource( 2 )
+text = "Sound"
+align = 1
+valign = 1
+
+[node name="Button7" type="Button" parent="TextureRect/Panel"]
+margin_left = 171.272
+margin_top = 613.328
+margin_right = 753.272
+margin_bottom = 768.328
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_fonts/font = SubResource( 1 )
+action_mode = 0
+
+[node name="Label" type="Label" parent="TextureRect/Panel/Button7"]
+margin_left = 161.0
+margin_top = 13.6365
+margin_right = 409.0
+margin_bottom = 143.637
+hint_tooltip = "fffffff"
+custom_fonts/font = SubResource( 2 )
+align = 1
+valign = 1
+
+[node name="Button8" type="Button" parent="TextureRect/Panel"]
+margin_left = 656.175
+margin_top = 1138.36
+margin_right = 1414.18
+margin_bottom = 1312.36
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 1 )
+action_mode = 0
+
+[node name="Label" type="Label" parent="TextureRect/Panel/Button8"]
+margin_left = 28.0925
+margin_top = 10.5458
+margin_right = 735.093
+margin_bottom = 140.546
+hint_tooltip = "fffffff"
+custom_fonts/font = SubResource( 2 )
+text = "Keyboard Options"
+align = 1
+valign = 1
+
+[node name="Button10" type="Button" parent="TextureRect/Panel"]
+margin_left = 712.174
+margin_top = 87.8813
+margin_right = 1294.17
+margin_bottom = 242.881
+size_flags_horizontal = 2
+size_flags_vertical = 2
+custom_fonts/font = SubResource( 1 )
+action_mode = 0
+
+[node name="Label" type="Label" parent="TextureRect/Panel/Button10"]
+margin_left = 161.0
+margin_top = 10.5457
+margin_right = 409.0
+margin_bottom = 140.546
+hint_tooltip = "fffffff"
+custom_fonts/font = SubResource( 2 )
+text = "Options"
+align = 1
+valign = 1

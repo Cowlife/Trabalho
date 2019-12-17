@@ -1,0 +1,17 @@
+[gd_scene format=2]
+
+[node name="Multiplayer" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 393.0
+margin_top = 273.0
+margin_right = 871.0
+margin_bottom = 557.0
+
+[node name="Panel" type="Panel" parent="TextureRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Button" type="Button" parent="TextureRect/Panel"]
+margin_right = 761.0
+margin_bottom = 372.0

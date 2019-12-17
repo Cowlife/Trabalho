@@ -1,0 +1,514 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://.import/Trabalho PI/Jogo.gd" type="Script" id=1]
+[ext_resource path="res://pitch.png" type="Texture" id=2]
+[ext_resource path="res://.import/Trabalho PI/Barra.gd" type="Script" id=3]
+[ext_resource path="res://icon.png" type="Texture" id=4]
+[ext_resource path="res://addons/gut/Boneco.gd" type="Script" id=5]
+[ext_resource path="res://boneco.png" type="Texture" id=6]
+[ext_resource path="res://.import/Trabalho PI/BonecoADSW.gd" type="Script" id=7]
+[ext_resource path="res://uclball.png" type="Texture" id=8]
+[ext_resource path="res://Oliver e Benji 1ª Abertura - Portugal.ogg" type="AudioStream" id=9]
+[ext_resource path="res://.import/Trabalho PI/AudioStreamPlayer.gd" type="Script" id=10]
+[ext_resource path="res://.import/Trabalho PI/Area2D.gd" type="Script" id=11]
+[ext_resource path="res://Blockade.png" type="Texture" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 15.2936, 38.3199 )
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends KinematicBody2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+const BALL_SPEED = -350
+var direction = Vector2(-1, 1)
+var speed = BALL_SPEED
+var velocity = Vector2(speed, -350).rotated(rotation)
+
+onready var initial_pos = self.position
+
+func reset():
+	position = initial_pos
+	speed = BALL_SPEED
+	direction = Vector2(30, 30)
+
+func _physics_process(delta):
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.bounce(collision.normal)
+		if collision.collider.has_method(\"hit\"):
+			collision.collider.hit()
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()	
+	
+func ready():
+	pass
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+ # Replace with function body.
+
+
+"
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 9.03998
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 3.89568, 0.198585 )
+
+[sub_resource type="GDScript" id=5]
+script/source = "extends CollisionShape2D
+export var ball_dir = 1
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func _on_area_entered( area ):
+	if area.get_name() == \"ball\":
+		# assign new direction
+		area.direction = Vector2(ball_dir, randf() * 2 - 1).normalized()
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[sub_resource type="PhysicsMaterial" id=7]
+
+[sub_resource type="RectangleShape2D" id=8]
+
+[sub_resource type="GDScript" id=9]
+script/source = "extends Area2D
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+func reset():
+	pass
+
+func _on_wall_area_entered( area ):
+	if area.get_name() == \"Bola\":
+		#oops, ball went out of game place, reset
+		area.reset()
+# Called when the node enters the scene tree for the first time.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+
+
+"
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 101.636, 249.042 )
+
+[node name="Jogo" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Campo" type="StaticBody2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="Campo"]
+position = Vector2( 1204.45, 916.672 )
+scale = Vector2( 2.13121, 2.33333 )
+texture = ExtResource( 2 )
+
+[node name="Barra" type="StaticBody2D" parent="."]
+position = Vector2( 1045.77, 875.805 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Barra"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -0.674532, 25.8352 )
+scale = Vector2( 1.02687, 29.8641 )
+texture = ExtResource( 4 )
+
+[node name="Barra2" type="StaticBody2D" parent="."]
+position = Vector2( 1045.77, 875.805 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Barra2"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -265.015, 21.3389 )
+scale = Vector2( 1.02687, 30.1197 )
+texture = ExtResource( 4 )
+
+[node name="Barra3" type="StaticBody2D" parent="."]
+position = Vector2( 1045.77, 875.805 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Barra3"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -534.391, 27.5313 )
+scale = Vector2( 1.02687, 30.4797 )
+texture = ExtResource( 4 )
+
+[node name="Barra4" type="StaticBody2D" parent="."]
+position = Vector2( 1045.77, 875.805 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Barra4"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -788.662, 9.16745 )
+scale = Vector2( 1.02687, 29.8409 )
+texture = ExtResource( 4 )
+
+[node name="Barra5" type="StaticBody2D" parent="."]
+position = Vector2( 1045.77, 875.805 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Barra5"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1112.07, 9.94372 )
+scale = Vector2( 1.02687, 30.0226 )
+texture = ExtResource( 4 )
+
+[node name="Barra6" type="StaticBody2D" parent="."]
+position = Vector2( 1045.77, 875.805 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Barra6"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 860.321, 20.6057 )
+scale = Vector2( 1.02687, 30.2368 )
+texture = ExtResource( 4 )
+
+[node name="Barra7" type="StaticBody2D" parent="."]
+position = Vector2( 1045.77, 875.805 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Barra7"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 606.051, 24.2451 )
+scale = Vector2( 1.02687, 29.5798 )
+texture = ExtResource( 4 )
+
+[node name="Barra8" type="StaticBody2D" parent="."]
+position = Vector2( 1045.77, 875.805 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Barra8"]
+visible = false
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 324.087, 26.9983 )
+scale = Vector2( 1.02687, 30.0369 )
+texture = ExtResource( 4 )
+
+[node name="BonecoSetas3" type="KinematicBody2D" parent="."]
+position = Vector2( 1028.39, 871.468 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoSetas3"]
+position = Vector2( 13.1736, 1.24164 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoSetas3"]
+position = Vector2( 19.8716, 2.60303 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="BonecoSetas" type="KinematicBody2D" parent="."]
+position = Vector2( 1028.39, 371.468 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoSetas"]
+position = Vector2( 13.1736, 1.24164 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoSetas"]
+position = Vector2( 19.8716, 2.60303 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="BonecoSetas1" type="KinematicBody2D" parent="."]
+position = Vector2( 1028.39, 611.468 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoSetas1"]
+position = Vector2( 13.1736, 1.24164 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoSetas1"]
+position = Vector2( 19.8716, 2.60303 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="BonecoSetas4" type="KinematicBody2D" parent="."]
+position = Vector2( 1028.39, 1131.47 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoSetas4"]
+position = Vector2( 13.1736, 1.2417 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoSetas4"]
+position = Vector2( 19.8716, -0.333252 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="BonecoSetas5" type="KinematicBody2D" parent="."]
+position = Vector2( 1028.39, 1371.47 )
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoSetas5"]
+position = Vector2( 13.1736, 1.2417 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoSetas5"]
+position = Vector2( 19.8716, 2.60303 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="BonecoADSW" type="KinematicBody2D" parent="."]
+position = Vector2( 238.33, 871.468 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoADSW"]
+position = Vector2( 13.1735, 1.24164 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoADSW"]
+position = Vector2( 19.8716, 2.60303 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="BonecoASWD" type="KinematicBody2D" parent="."]
+position = Vector2( 760.393, 871.468 )
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoASWD"]
+position = Vector2( 13.1735, 1.24164 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoASWD"]
+position = Vector2( 19.8716, 2.60303 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="BonecoDASW" type="KinematicBody2D" parent="."]
+position = Vector2( 490.393, 1171.47 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoDASW"]
+position = Vector2( 13.1736, 1.2417 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoDASW"]
+position = Vector2( 19.8716, 2.60303 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="BonecoDSWA" type="KinematicBody2D" parent="."]
+position = Vector2( 490.393, 571.468 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoDSWA"]
+position = Vector2( 13.1736, 1.24164 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoDSWA"]
+position = Vector2( 19.8716, 2.60303 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="BolaPhysics" type="KinematicBody2D" parent="."]
+position = Vector2( 1189.23, 884.518 )
+scale = Vector2( 0.233, 0.233 )
+script = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="BolaPhysics"]
+position = Vector2( 12.8014, 17.1102 )
+scale = Vector2( 0.928141, 0.988142 )
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BolaPhysics"]
+position = Vector2( 2.12842, -6.22546 )
+scale = Vector2( 0.433, 0.433 )
+shape = SubResource( 3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+script = ExtResource( 10 )
+
+[node name="Blockade2" type="StaticBody2D" parent="."]
+position = Vector2( 1178.14, 1678.8 )
+scale = Vector2( 3.68549, 2.08941 )
+
+[node name="Area2D" type="StaticBody2D" parent="Blockade2"]
+position = Vector2( -1.45099, 1.39695 )
+scale = Vector2( 100, 200 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockade2/Area2D"]
+position = Vector2( -0.0418344, 0.255876 )
+shape = SubResource( 4 )
+script = SubResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockade2"]
+shape = SubResource( 6 )
+
+[node name="Blockade3" type="StaticBody2D" parent="."]
+position = Vector2( 2349.74, 858.689 )
+rotation = 1.5708
+scale = Vector2( 3.68549, 2.08941 )
+
+[node name="Area2D" type="StaticBody2D" parent="Blockade3"]
+position = Vector2( -1.45099, 1.39695 )
+scale = Vector2( 100, 200 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockade3/Area2D"]
+position = Vector2( -4.11762, -0.217752 )
+shape = SubResource( 4 )
+
+[node name="Area2D2" type="StaticBody2D" parent="Blockade3"]
+position = Vector2( -1.45099, 1.39695 )
+scale = Vector2( 100, 200 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockade3/Area2D2"]
+position = Vector2( 4.63982, -0.21778 )
+shape = SubResource( 4 )
+
+[node name="Blockade" type="Sprite" parent="."]
+position = Vector2( 2438.67, 1524.82 )
+rotation = 1.5708
+scale = Vector2( 0.999132, 2.54804 )
+texture = ExtResource( 12 )
+
+[node name="Blockade7" type="Sprite" parent="."]
+position = Vector2( 1196.17, 53.1671 )
+scale = Vector2( 3.33156, 2.54804 )
+texture = ExtResource( 12 )
+
+[node name="Blockade8" type="Sprite" parent="."]
+position = Vector2( 1165.27, 1833.03 )
+scale = Vector2( 3.20992, 2.54804 )
+texture = ExtResource( 12 )
+
+[node name="Blockade9" type="Sprite" parent="."]
+position = Vector2( -29.5024, 351.702 )
+rotation = 1.5708
+scale = Vector2( 0.999132, 2.54804 )
+texture = ExtResource( 12 )
+
+[node name="Blockade10" type="Sprite" parent="."]
+position = Vector2( 2442.87, 393.749 )
+rotation = 1.5708
+scale = Vector2( 0.999132, 2.54804 )
+texture = ExtResource( 12 )
+
+[node name="Blockade11" type="Sprite" parent="."]
+position = Vector2( -29.5022, 1478.57 )
+rotation = 1.5708
+scale = Vector2( 0.999132, 2.54804 )
+texture = ExtResource( 12 )
+
+[node name="Blockade4" type="StaticBody2D" parent="."]
+position = Vector2( 0.970581, 853.11 )
+rotation = 1.5708
+scale = Vector2( 3.68549, 2.08941 )
+
+[node name="Area2D" type="StaticBody2D" parent="Blockade4"]
+position = Vector2( -1.45099, 1.39695 )
+scale = Vector2( 100, 200 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockade4/Area2D"]
+position = Vector2( 4.53092, 0.0603073 )
+shape = SubResource( 4 )
+
+[node name="Area2D2" type="StaticBody2D" parent="Blockade4"]
+position = Vector2( -1.45099, 1.39695 )
+scale = Vector2( 100, 200 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockade4/Area2D2"]
+position = Vector2( -4.13735, 0.0603353 )
+shape = SubResource( 4 )
+
+[node name="Blockade5" type="StaticBody2D" parent="."]
+position = Vector2( 1186.51, 58.1005 )
+scale = Vector2( 3.68549, 2.08941 )
+physics_material_override = SubResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockade5"]
+position = Vector2( 2.16769, -3.82355 )
+scale = Vector2( 5, 1 )
+shape = SubResource( 8 )
+
+[node name="Area2D" type="StaticBody2D" parent="Blockade5"]
+position = Vector2( -1.45099, 1.39695 )
+scale = Vector2( 100, 200 )
+script = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockade5/Area2D"]
+position = Vector2( 0.156363, -0.0170295 )
+shape = SubResource( 4 )
+
+[node name="BonecoADWS" type="KinematicBody2D" parent="."]
+position = Vector2( 760.393, 1271.47 )
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoADWS"]
+position = Vector2( 13.1735, 1.2417 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoADWS"]
+position = Vector2( 19.8716, 2.60303 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="BonecoASDW" type="KinematicBody2D" parent="."]
+position = Vector2( 760.393, 471.468 )
+script = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonecoASDW"]
+position = Vector2( 13.1735, 1.24164 )
+scale = Vector2( 2.358, 2.053 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="BonecoASDW"]
+position = Vector2( 19.8716, 2.60303 )
+scale = Vector2( 6.5, 6 )
+texture = ExtResource( 6 )
+
+[node name="Area2D" type="Area2D" parent="."]
+script = SubResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -66.3281, 953.081 )
+shape = SubResource( 10 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2( 2545.78, -6.10352e-005 )
+script = SubResource( 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( -66.3281, 953.081 )
+shape = SubResource( 10 )
+[connection signal="tree_entered" from="Blockade2/Area2D/CollisionShape2D" to="Blockade2/Area2D" method="_on_CollisionShape2D_tree_entered"]
+[connection signal="area_entered" from="Area2D2" to="BolaPhysics" method="_on_Area2D2_area_entered"]
